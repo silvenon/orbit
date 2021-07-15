@@ -18,7 +18,7 @@ const StyledIcon = styled.span`
     padding: 3px 5px;
     display: flex;
     justify-content: center;
-    background: ${theme.orbit.paletteProductLightActive};
+    background: ${theme.orbit.paletteProductLightHover};
     border-radius: ${theme.orbit.borderRadiusNormal};
   `}
 `;
@@ -36,7 +36,7 @@ const KeyboardShortcuts = () => {
       <Stack inline spacing="XXSmall" align="center">
         <StyledIcon>{os === "mac" ? <>&#8984;</> : "Alt"}</StyledIcon>
         <span>+</span>
-        <StyledIcon>&#107;</StyledIcon>
+        <StyledIcon>&#75;</StyledIcon>
       </Stack>
     </StyledWrapper>
   );
