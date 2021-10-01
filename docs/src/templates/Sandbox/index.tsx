@@ -18,8 +18,8 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Sandbox = ({ pathContext }) => {
-  const { example, id, example_id, scope, exampleKnobs, exampleVariants } = pathContext;
+const Sandbox = ({ pageContext }) => {
+  const { example, id, example_id, scope, exampleKnobs, exampleVariants } = pageContext;
   const { code, origin, setCode } = useSandbox(example_id);
 
   const modules = getModules(scope);
@@ -42,6 +42,7 @@ const Sandbox = ({ pathContext }) => {
           exampleId={id}
           isFullPage
           example={example}
+          exampleName={example_id}
           origin={origin}
           exampleKnobs={exampleKnobs}
           exampleVariants={exampleVariants || []}

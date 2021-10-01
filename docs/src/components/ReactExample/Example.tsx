@@ -74,6 +74,7 @@ interface Props extends InitialProps {
   responsive?: boolean;
   code: string;
   example: string;
+  exampleName: string;
   fullPageExampleId?: string;
   isFullPage?: boolean;
   exampleKnobs: ExampleKnob[];
@@ -87,6 +88,7 @@ const Example = ({
   code,
   origin,
   exampleId,
+  exampleName,
   exampleKnobs,
   exampleVariants,
   fullPageExampleId,
@@ -154,7 +156,7 @@ const Example = ({
       {isEditorOpened && <Editor isFullPage={isFullPage} onChange={onChangeCode} code={example} />}
       {isPlaygroundOpened && exampleKnobs && exampleKnobs.length > 0 && (
         <Playground
-          onChange={knob => onChangeCode(transform(example, knob))}
+          onChange={knob => onChangeCode(transform(exampleName, example, knob))}
           exampleKnobs={exampleKnobs}
         />
       )}
