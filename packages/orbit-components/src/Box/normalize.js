@@ -3,16 +3,7 @@ import { WIDTH_AND_HEIGHT } from "./consts";
 import { TOKENS } from "../utils/layout/consts";
 import type { ThemeProps, Theme } from "../defaultTheme";
 import { firstToUpper } from "../utils/common";
-import {
-  getJustify,
-  getAlign,
-  formatCSS,
-  getDirection,
-  getShrink,
-  getWrap,
-  getGrow,
-  isDefined,
-} from "../utils/layout";
+import { getJustify, getAlign, formatCSS, getDirection, getWrap, isDefined } from "../utils/layout";
 
 import type { MediaQueryObject, Elevation } from ".";
 
@@ -62,8 +53,8 @@ const norm = ({ val, key, theme }): string | void => {
     justify: formatCSS("justify-content", getJustify(val)),
     align: formatCSS("align-items", getAlign(val)),
     direction: formatCSS("flex-direction", getDirection(val)),
-    grow: formatCSS("flex-grow", getGrow(val)),
-    shrink: formatCSS("flex-shrink", getShrink(val)),
+    grow: formatCSS("flex-grow", val),
+    shrink: formatCSS("flex-shrink", val),
     wrap: formatCSS("flex-wrap", getWrap(val)),
     textAlign: formatCSS("text-align", val),
     minWidth: formatCSS("min-width", val),
@@ -76,13 +67,15 @@ const norm = ({ val, key, theme }): string | void => {
   return all[key];
 };
 
-const normalize = (object: MediaQueryObject): any => ({ theme }: ThemeProps) => {
-  if (!object) return null;
+const normalize =
+  (object: MediaQueryObject): any =>
+  ({ theme }: ThemeProps) => {
+    if (!object) return null;
 
-  return Object.entries(object).reduce((acc, [key, val]: any) => {
-    const accFn = additional => [...acc, ...additional];
-    return accFn([norm({ val, key, theme })]);
-  }, []);
-};
+    return Object.entries(object).reduce((acc, [key, val]: any) => {
+      const accFn = additional => [...acc, ...additional];
+      return accFn([norm({ val, key, theme })]);
+    }, []);
+  };
 
 export default normalize;
