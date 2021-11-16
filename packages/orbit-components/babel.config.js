@@ -14,7 +14,10 @@ module.exports = {
     require.resolve("@babel/plugin-proposal-private-methods"),
     require.resolve("@babel/plugin-proposal-object-rest-spread"),
     require.resolve("@babel/plugin-proposal-nullish-coalescing-operator"),
-    require.resolve("@babel/plugin-transform-runtime"),
+    [
+      require.resolve("@babel/plugin-transform-runtime"),
+      { version: require("@babel/runtime/package.json").version },
+    ],
     require.resolve("@adeira/babel-preset-adeira/src/adeira-js-warning"),
     require.resolve("@adeira/babel-preset-adeira/src/adeira-js-invariant"),
   ],
@@ -23,7 +26,10 @@ module.exports = {
       presets: [[require.resolve("@babel/preset-env"), { modules: false, bugfixes: true }]],
       plugins: [
         require.resolve("babel-plugin-styled-components"),
-        [require.resolve("@babel/plugin-transform-runtime"), { useESModules: true }],
+        [
+          require.resolve("@babel/plugin-transform-runtime"),
+          { useESModules: true, version: require("@babel/runtime/package.json").version },
+        ],
       ],
     },
     test: {
